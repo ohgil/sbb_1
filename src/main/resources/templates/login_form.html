@@ -1,4 +1,4 @@
-<html layout:decorate="~{layout}">
+<html layout:decorate="~{layout}" xmlns:th="http://www.w3.org/1999/xhtml">
 <div layout:fragment="content" class="container my-3">
   <form th:action="@{/user/login}" method="post">
     <div th:if="${param.error}">
@@ -14,7 +14,11 @@
       <label for="password" class="form-label">비밀번호</label>
       <input type="password" name="password" id="password" class="form-control">
     </div>
+
     <button type="submit" class="btn btn-primary">로그인</button>
+      <a href="/oauth2/authorization/kakao">
+        <img id="login-kakao" src="https://velog.velcdn.com/images/ohgil/post/3caa63ae-f447-4c55-a030-2f4f8ead99a6/image.png" alt="" style="width: 250px;">
+      </a>
     <div>
       <a th:href="@{/user/find/username}" class="btn btn-secondary">아이디 찾기</a>
       <a th:href="@{/user/find/password}" class="btn btn-secondary">비밀번호 찾기</a>
