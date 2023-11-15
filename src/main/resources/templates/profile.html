@@ -9,6 +9,9 @@
                  alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3" th:text="${username}"></h5>
           </div>
+          <div class="col-6">
+            <a class="btn btn-secondary" th:href="@{/user/modify/password}">비밀번호 변경</a>
+          </div>
         </div>
       </div>
 

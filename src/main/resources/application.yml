@@ -6,6 +6,24 @@ spring:
     url: jdbc:mariadb://127.0.0.1:3306/sbb_1?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     username: root
     password: 9165
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ohgilhwan1957@gmail.com
+    password: xxqqfupjfwxhbgcd
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    transport:
+      protocol: smtp
+    debug: true
+    default:
+      encoding: UTF-8
+
   jpa:
     hibernate:
       ddl-auto: update

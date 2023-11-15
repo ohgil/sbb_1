@@ -35,6 +35,8 @@ public class Question {
     @ManyToOne
     private SiteUser author;
 
+    private Integer hit;
+
     private LocalDateTime modifyDate;
 
     @ManyToMany
