@@ -85,4 +85,9 @@ public class QuestionService {
         question.getVoter().add(siteUser);
         this.questionRepository.save(question);
     }
+
+    public List<Question> getCurrentListByUser(String username, int num) {
+        Pageable pageable = PageRequest.of(0, num);
+        return questionRepository.findCurrentQuestion(username, pageable);
+    }
 }

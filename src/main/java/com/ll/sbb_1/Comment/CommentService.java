@@ -1,12 +1,15 @@
 package com.ll.sbb_1.Comment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import com.ll.sbb_1.DataNotFoundException;
 import com.ll.sbb_1.Question.Question;
 import com.ll.sbb_1.user.SiteUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -47,5 +50,10 @@ public class CommentService {
 
     public void delete(Comment c) {
         this.commentRepository.delete(c);
+    }
+
+    public List<Comment> getCurrentListByUser(String username, int num) {
+        Pageable pageable = PageRequest.of(0, num);
+        return commentRepository.findCurrentComment(username, pageable);
     }
 }

@@ -1,13 +1,20 @@
 package com.ll.sbb_1.user;
 
+import com.ll.sbb_1.Answer.AnswerService;
+import com.ll.sbb_1.Comment.CommentService;
+import com.ll.sbb_1.Question.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @RequiredArgsConstructor
 @Controller
@@ -15,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     private final UserService userService;
+    private final QuestionService questionService;
+    private final AnswerService answerService;
+    private final CommentService commentService;
 
     @GetMapping("/signup")
     public String signup(UserCreateForm userCreateForm) {
@@ -51,5 +61,19 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login_form";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/profile")
+    public String profile(Model model, Principal principal) {
+        String username = principal.getName();
+        model.addAttribute("username", username);
+        model.addAttribute("questionList",
+                questionService.getCurrentListByUser(username, 5));
+        model.addAttribute("answerList",
+                answerService.getCurrentListByUser(username, 5));
+        model.addAttribute("commentList",
+                commentService.getCurrentListByUser(username, 5));
+        return "profile";
     }
 }

@@ -1,5 +1,6 @@
 package com.ll.sbb_1.Answer;
 
+import com.ll.sbb_1.Comment.Comment;
 import com.ll.sbb_1.DataNotFoundException;
 import com.ll.sbb_1.Question.Question;
 import com.ll.sbb_1.user.SiteUser;
@@ -61,5 +62,10 @@ public class AnswerService {
     public void vote(Answer answer, SiteUser siteUser) {
         answer.getVoter().add(siteUser);
         this.answerRepository.save(answer);
+    }
+
+    public List<Answer> getCurrentListByUser(String username, int num) {
+        Pageable pageable = PageRequest.of(0, num);
+        return answerRepository.findCurrentAnswer(username, pageable);
     }
 }
