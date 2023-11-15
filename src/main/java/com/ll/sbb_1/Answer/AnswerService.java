@@ -4,9 +4,15 @@ import com.ll.sbb_1.DataNotFoundException;
 import com.ll.sbb_1.Question.Question;
 import com.ll.sbb_1.user.SiteUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -15,6 +21,13 @@ public class AnswerService {
 
     private final AnswerRepository answerRepository;
 
+    public Page<Answer> getList(Question question, int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("Voter"));
+        sorts.add(Sort.Order.asc("createDate"));
+        Pageable pageable = PageRequest.of(page,5, Sort.by(sorts));
+        return this.answerRepository.findAllByQuestion(question, pageable);
+    }
 
     public Answer create(Question question, String content, SiteUser author) {
         Answer answer = new Answer();
