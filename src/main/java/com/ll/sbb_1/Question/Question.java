@@ -1,6 +1,7 @@
 package com.ll.sbb_1.Question;
 
 import com.ll.sbb_1.Answer.Answer;
+import com.ll.sbb_1.Comment.Comment;
 import com.ll.sbb_1.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -36,4 +37,7 @@ public class Question {
 
     @ManyToMany
     Set<SiteUser> voter;
+    @OneToMany(mappedBy = "question")
+    private List<Comment> commentList;
+
 }
