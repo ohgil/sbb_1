@@ -35,7 +35,8 @@ public class Question {
     @ManyToOne
     private SiteUser author;
 
-    private Integer hit;
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int hit;
 
     private LocalDateTime modifyDate;
 

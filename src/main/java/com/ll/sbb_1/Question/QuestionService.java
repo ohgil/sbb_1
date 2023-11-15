@@ -53,7 +53,10 @@ public class QuestionService {
     public Question getQuestion(Integer id) {
         Optional<Question> question = this.questionRepository.findById(id);
         if (question.isPresent()) {
-            return question.get();
+            Question question1 = question.get();
+            question1.setHit(question1.getHit()+1);
+            this.questionRepository.save(question1);
+            return question1;
         } else {
             throw new DataNotFoundException("question not found");
         }
@@ -90,4 +93,6 @@ public class QuestionService {
         Pageable pageable = PageRequest.of(0, num);
         return questionRepository.findCurrentQuestion(username, pageable);
     }
+
+
 }
