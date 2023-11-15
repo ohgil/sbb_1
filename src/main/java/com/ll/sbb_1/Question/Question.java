@@ -25,6 +25,8 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    private String category;
+
     private LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)

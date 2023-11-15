@@ -12,6 +12,16 @@
             <label for="content" class="form-label">내용</label>
             <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
         </div>
+        <div>
+            <select th:field="*{category}" class="form-select">
+                <option value="">카테고리를선택해주세요</option>
+                <option value="오리">오리</option>
+                <option value="강아지">강아지</option>
+                <option value="고양이">고양이</option>
+                <option value="너구리">너구리</option>
+                <option value="다람쥐">다람쥐</option>
+            </select>
+        </div>
         <input type="submit" value="저장하기" class="btn btn-primary my-2">
     </form>
 </div>
