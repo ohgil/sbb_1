@@ -1,4 +1,4 @@
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}">
 <div layout:fragment="content">
   <!-- 구현 -->
   <!-- login form -->
@@ -32,6 +32,11 @@
   </div>
 </div>
 <script layout:fragment="script" type='text/javascript'>
+  $(document).ready(function() {
+    $("#alert-fail").css("display", "none");
+    $("#alert-success").css("display", "none");
+  });
+
   function findUsername() {
     $.ajax({
         url : "/user/find/username",
