@@ -15,14 +15,30 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public SiteUser create(String username, String email, String password){
+    public SiteUser create(String username, String email, String password, String nickname){
         SiteUser user = new SiteUser();
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
+        user.setNickname(nickname);
         this.userRepository.save(user);
         return user;
     }
+
+//    public SiteUser join(String username, String password, String email, String nickname) {
+//
+//        SiteUser user = SiteUser.builder()
+//                .username(username)
+//                .password(passwordEncoder.encode(password))
+//                .email(email)
+//                .nickname(nickname)
+//                .build();
+//        userRepository.save(user);
+//
+//        return user;
+//    }
+
+
     public String getEmailConfirmCode(String code) {
         return passwordEncoder.encode(code);
     }
