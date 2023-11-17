@@ -67,7 +67,7 @@ public class OAuth2UserService extends DefaultOAuth2UserService {
                     user.setEmail(email);
                     user.setUsername(username);
                     user.setNickname(nickname);
-                    user.setPassword("0");
+                    user.setPassword("");
                     userRepository.save(user);
                 }
             }
